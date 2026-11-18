@@ -23,7 +23,7 @@ Not sure? Choose **x64**. All files of a version are on the [Releases](https://g
 
 **Windows SmartScreen:** The file is not code-signed yet, so Windows may show "Windows protected your PC". Only if you downloaded the file from this page and its checksum matches (see below), click **More info** and then **Run anyway**.
 
-**Updates:** FarPen checks this page once a day and shows a notification when a new version is out. It downloads nothing by itself.
+**Updates:** FarPen checks for a new version once a day and tells you. To update, open **Settings › Updates › Download and install**: FarPen downloads the file for your PC from this page, checks its SHA-256 and replaces itself. Running a newer EXE also updates the installed copy.
 
 **Uninstall:** Windows Settings › Apps › Installed apps › FarPen › Uninstall.
 
@@ -74,7 +74,7 @@ Emin değilsen **x64**'ü seç.
 
 **Windows SmartScreen:** Dosya henüz kod imzalı değil, bu yüzden Windows "Windows bilgisayarınızı korudu" uyarısı gösterebilir. Dosyayı bu sayfadan indirdiysen ve sağlama değeri eşleşiyorsa (aşağıya bak) **Ek bilgi**'ye, ardından **Yine de çalıştır**'a tıkla.
 
-**Güncellemeler:** FarPen günde bir kez bu sayfayı kontrol eder ve yeni sürüm çıktığında bildirim gösterir. Kendi kendine bir şey indirmez.
+**Güncellemeler:** FarPen günde bir kez yeni sürüm olup olmadığına bakar ve sana haber verir. Güncellemek için **Ayarlar › Güncellemeler › İndir ve kur**'a tıkla: FarPen bilgisayarına uygun dosyayı bu sayfadan indirir, SHA-256 ile doğrular ve kendini günceller. Daha yeni bir EXE'yi çalıştırmak da kurulu kopyayı günceller.
 
 **Kaldırma:** Windows Ayarlar › Uygulamalar › Yüklü uygulamalar › FarPen › Kaldır.
 
