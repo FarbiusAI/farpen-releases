@@ -1,49 +1,68 @@
-# FarPen for Windows
+# FarPen for Windows and Linux
 
-Draw, highlight and point over any app on your screen. FarPen is a Farbius product.
+Draw, highlight and point over any app on your screen. Pair your phone and it becomes a drawing tablet, a touchpad or a remote. FarPen is a Farbius product.
 
-**Website:** https://www.farpen.farbius.com/en/pc · **Türkçe:** [aşağıda](#türkçe)
+**[Windows](#windows)** · **[Linux](#linux)** · **[Check the file](#check-the-file)** · **[Türkçe](#türkçe)** · Website: https://www.farpen.farbius.com/en/pc
 
-## Download
+## Windows
 
-| Your PC | File |
+**Recommended:** [Get FarPen from the Microsoft Store](https://apps.microsoft.com/detail/9nwn186vxtn1). It installs without warnings and updates itself. Or download the EXE:
+
+| Your PC | Download |
 | --- | --- |
 | Most Windows PCs (Intel or AMD, 64-bit) | [FarPen-win-x64.exe](https://github.com/FarbiusAI/farpen-releases/releases/latest/download/FarPen-win-x64.exe) |
 | Windows on ARM (Snapdragon, Surface Pro X) | [FarPen-win-arm64.exe](https://github.com/FarbiusAI/farpen-releases/releases/latest/download/FarPen-win-arm64.exe) |
 | Older 32-bit Windows | [FarPen-win-x86.exe](https://github.com/FarbiusAI/farpen-releases/releases/latest/download/FarPen-win-x86.exe) |
 
-Not sure? Choose **x64**. All files of a version are on the [Releases](https://github.com/FarbiusAI/farpen-releases/releases) page.
+Not sure? Choose **x64**. Windows 10 (1809 or later) or Windows 11. No administrator rights needed.
 
-**Requirements:** Windows 10 version 1809 or later, or Windows 11. No administrator rights are needed.
+1. Run the file. FarPen installs for your Windows user (`%LOCALAPPDATA%\Programs\Farbius\FarPen`) and adds a Start menu shortcut.
+2. Press **Ctrl + Alt + P** to draw.
 
-## Install
+**SmartScreen:** the file is not code-signed yet, so Windows may say "Windows protected your PC". Only if you downloaded it from this page and its checksum matches, click **More info**, then **Run anyway**.
 
-1. Run the downloaded file. FarPen installs itself for your Windows user only (in `%LOCALAPPDATA%\Programs\Farbius\FarPen`) and adds a Start menu shortcut.
-2. Press **Ctrl + Alt + P** to draw on your screen.
+**Update:** Settings › Updates › Download and install. **Uninstall:** Windows Settings › Apps › Installed apps › FarPen.
 
-**Windows SmartScreen:** The file is not code-signed yet, so Windows may show "Windows protected your PC". Only if you downloaded the file from this page and its checksum matches (see below), click **More info** and then **Run anyway**.
+## Linux
 
-**Updates:** FarPen checks for a new version once a day and tells you. To update, open **Settings › Updates › Download and install**: FarPen downloads the file for your PC from this page, checks its SHA-256 and replaces itself. Running a newer EXE also updates the installed copy.
+| Your system | Download |
+| --- | --- |
+| Debian, Ubuntu, Linux Mint, Pardus, Pardus ETAP | [FarPen-linux-amd64.deb](https://github.com/FarbiusAI/farpen-releases/releases/latest/download/FarPen-linux-amd64.deb) |
+| Fedora, openSUSE, RHEL family | [FarPen-linux-x86_64.rpm](https://github.com/FarbiusAI/farpen-releases/releases/latest/download/FarPen-linux-x86_64.rpm) |
+| Any distribution, no install | [FarPen-linux-x86_64.AppImage](https://github.com/FarbiusAI/farpen-releases/releases/latest/download/FarPen-linux-x86_64.AppImage) |
+| ARM 64-bit | [.deb](https://github.com/FarbiusAI/farpen-releases/releases/latest/download/FarPen-linux-arm64.deb) · [.rpm](https://github.com/FarbiusAI/farpen-releases/releases/latest/download/FarPen-linux-aarch64.rpm) · [AppImage](https://github.com/FarbiusAI/farpen-releases/releases/latest/download/FarPen-linux-aarch64.AppImage) |
 
-**Uninstall:** Windows Settings › Apps › Installed apps › FarPen › Uninstall.
-
-## Check the file (recommended)
-
-Every release lists the SHA-256 checksum of each file in `SHA256SUMS.txt`, and releases cannot be changed after they are published. In PowerShell:
-
-```powershell
-Get-FileHash .\FarPen-win-x64.exe -Algorithm SHA256
+```sh
+sudo apt install ./FarPen-linux-amd64.deb        # Debian, Ubuntu, Pardus
+sudo dnf install ./FarPen-linux-x86_64.rpm       # Fedora
+chmod +x FarPen-linux-x86_64.AppImage && ./FarPen-linux-x86_64.AppImage
 ```
 
-The value must match the line for the same file in `SHA256SUMS.txt`. If it does not, delete the file and do not run it.
+Works on X11 desktops, and on Wayland desktops through XWayland. The AppImage needs no FUSE library. Phone tablet and touchpad modes need the .deb or .rpm, which add a udev rule for the signed-in user.
 
-## Security
+**Pardus ETAP smart boards:** an administrator (`etapadmin`) installs the .deb once; every teacher account can then use FarPen without a password. Touch draws by default.
 
-Found a security problem? Please read [SECURITY.md](SECURITY.md) and report it privately.
+**Update:** Settings › Updates. **Uninstall:** Settings › Uninstall FarPen, or `sudo apt purge farpen` / `sudo dnf remove farpen`.
 
-## Legal
+## Check the file
 
-FarPen is free to use under the [Terms of Use](https://www.farpen.farbius.com/en/terms) and the [LICENSE](LICENSE) in this repository. How data is handled: [Privacy Policy](https://www.farpen.farbius.com/en/privacy). Open-source components: [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md). This repository holds release files only; the source code is not published.
+Each release lists the SHA-256 of every file in `SHA256SUMS.txt`, and published releases cannot be changed. FarPen's in-app updater checks the same file before it installs anything.
+
+```powershell
+Get-FileHash .\FarPen-win-x64.exe -Algorithm SHA256      # Windows (PowerShell)
+```
+
+```sh
+sha256sum --ignore-missing -c SHA256SUMS.txt               # Linux, in the download folder
+```
+
+If the value does not match the line for the same file, delete the file and do not run it.
+
+## Security and legal
+
+Found a security problem? Read [SECURITY.md](SECURITY.md) and report it privately.
+
+FarPen is free to use under the [Terms of Use](https://www.farpen.farbius.com/en/terms) and the [LICENSE](LICENSE). Data: [Privacy Policy](https://www.farpen.farbius.com/en/privacy). Open-source components: [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md). This repository holds release files only; the source code is not published.
 
 © 2026 Farbius. All rights reserved.
 
@@ -51,45 +70,56 @@ FarPen is free to use under the [Terms of Use](https://www.farpen.farbius.com/en
 
 ## Türkçe
 
-Ekranında her uygulamanın üzerine çiz, vurgula ve işaret et. FarPen bir Farbius ürünüdür.
+Ekranında her uygulamanın üzerine çiz, vurgula ve işaret et. Telefonunu eşle; çizim tableti, dokunmatik yüzey ya da kumanda olsun. FarPen bir Farbius ürünüdür.
 
 **Web sitesi:** https://www.farpen.farbius.com/pc
 
-### İndir
+### Windows
 
-| Bilgisayarın | Dosya |
+**Önerilen:** [FarPen'i Microsoft Store'dan al](https://apps.microsoft.com/detail/9nwn186vxtn1). Uyarısız kurulur, kendiliğinden güncellenir. Ya da EXE'yi indir:
+
+| Bilgisayarın | İndir |
 | --- | --- |
 | Çoğu Windows bilgisayar (Intel veya AMD, 64 bit) | [FarPen-win-x64.exe](https://github.com/FarbiusAI/farpen-releases/releases/latest/download/FarPen-win-x64.exe) |
 | ARM işlemcili Windows (Snapdragon, Surface Pro X) | [FarPen-win-arm64.exe](https://github.com/FarbiusAI/farpen-releases/releases/latest/download/FarPen-win-arm64.exe) |
 | Eski 32 bit Windows | [FarPen-win-x86.exe](https://github.com/FarbiusAI/farpen-releases/releases/latest/download/FarPen-win-x86.exe) |
 
-Emin değilsen **x64**'ü seç.
+Emin değilsen **x64**'ü seç. Windows 10 (1809 veya sonrası) ya da Windows 11. Yönetici izni gerekmez.
 
-**Gereksinimler:** Windows 10 sürüm 1809 veya sonrası ya da Windows 11. Yönetici izni gerekmez.
+1. Dosyayı çalıştır. FarPen yalnızca senin Windows kullanıcın için kurulur ve Başlat menüsüne kısayol ekler.
+2. Çizmek için **Ctrl + Alt + P**.
 
-### Kurulum
+**SmartScreen:** Dosya henüz kod imzalı değil; Windows "Windows bilgisayarınızı korudu" diyebilir. Dosyayı bu sayfadan indirdiysen ve sağlama değeri eşleşiyorsa **Ek bilgi**, ardından **Yine de çalıştır**.
 
-1. İndirdiğin dosyayı çalıştır. FarPen yalnızca senin Windows kullanıcın için kurulur (`%LOCALAPPDATA%\Programs\Farbius\FarPen`) ve Başlat menüsüne kısayol ekler.
-2. Ekrana çizmek için **Ctrl + Alt + P** tuşlarına bas.
+**Güncelleme:** Ayarlar › Güncellemeler › İndir ve kur. **Kaldırma:** Windows Ayarlar › Uygulamalar › Yüklü uygulamalar › FarPen.
 
-**Windows SmartScreen:** Dosya henüz kod imzalı değil, bu yüzden Windows "Windows bilgisayarınızı korudu" uyarısı gösterebilir. Dosyayı bu sayfadan indirdiysen ve sağlama değeri eşleşiyorsa (aşağıya bak) **Ek bilgi**'ye, ardından **Yine de çalıştır**'a tıkla.
+### Linux
 
-**Güncellemeler:** FarPen günde bir kez yeni sürüm olup olmadığına bakar ve sana haber verir. Güncellemek için **Ayarlar › Güncellemeler › İndir ve kur**'a tıkla: FarPen bilgisayarına uygun dosyayı bu sayfadan indirir, SHA-256 ile doğrular ve kendini günceller. Daha yeni bir EXE'yi çalıştırmak da kurulu kopyayı günceller.
+| Sistemin | İndir |
+| --- | --- |
+| Debian, Ubuntu, Linux Mint, Pardus, Pardus ETAP | [FarPen-linux-amd64.deb](https://github.com/FarbiusAI/farpen-releases/releases/latest/download/FarPen-linux-amd64.deb) |
+| Fedora, openSUSE, RHEL ailesi | [FarPen-linux-x86_64.rpm](https://github.com/FarbiusAI/farpen-releases/releases/latest/download/FarPen-linux-x86_64.rpm) |
+| Her dağıtım, kurulumsuz | [FarPen-linux-x86_64.AppImage](https://github.com/FarbiusAI/farpen-releases/releases/latest/download/FarPen-linux-x86_64.AppImage) |
+| ARM 64 bit | [.deb](https://github.com/FarbiusAI/farpen-releases/releases/latest/download/FarPen-linux-arm64.deb) · [.rpm](https://github.com/FarbiusAI/farpen-releases/releases/latest/download/FarPen-linux-aarch64.rpm) · [AppImage](https://github.com/FarbiusAI/farpen-releases/releases/latest/download/FarPen-linux-aarch64.AppImage) |
 
-**Kaldırma:** Windows Ayarlar › Uygulamalar › Yüklü uygulamalar › FarPen › Kaldır.
-
-### Dosyayı doğrula (önerilir)
-
-Her sürümde dosyaların SHA-256 değerleri `SHA256SUMS.txt` içinde yer alır ve yayınlanan sürümler sonradan değiştirilemez. PowerShell'de:
-
-```powershell
-Get-FileHash .\FarPen-win-x64.exe -Algorithm SHA256
+```sh
+sudo apt install ./FarPen-linux-amd64.deb        # Debian, Ubuntu, Pardus
+sudo dnf install ./FarPen-linux-x86_64.rpm       # Fedora
+chmod +x FarPen-linux-x86_64.AppImage && ./FarPen-linux-x86_64.AppImage
 ```
 
-Çıkan değer, `SHA256SUMS.txt` içindeki aynı dosyanın satırıyla aynı olmalı. Değilse dosyayı sil ve çalıştırma.
+X11 masaüstlerinde ve XWayland üzerinden Wayland masaüstlerinde çalışır. AppImage FUSE kütüphanesi istemez. Telefonla tablet ve dokunmatik yüzey modları için .deb ya da .rpm gerekir.
 
-### Hukuki
+**Pardus ETAP etkileşimli tahtalar:** Yönetici (`etapadmin`) .deb dosyasını bir kez kurar; ardından her öğretmen hesabı FarPen'i şifresiz kullanır. Dokunarak çizim varsayılan olarak açıktır.
 
-FarPen, [Kullanım Koşulları](https://www.farpen.farbius.com/terms) ve bu depodaki [LICENSE](LICENSE) kapsamında ücretsiz kullanılır. Kişisel veriler: [Gizlilik Politikası](https://www.farpen.farbius.com/privacy) ve [KVKK Aydınlatma Metni](https://www.farpen.farbius.com/kvkk). Güvenlik bildirimi: [SECURITY.md](SECURITY.md).
+**Güncelleme:** Ayarlar › Güncellemeler. **Kaldırma:** Ayarlar › FarPen'i kaldır ya da `sudo apt purge farpen`.
+
+### Dosyayı doğrula
+
+Her sürümdeki dosyaların SHA-256 değerleri `SHA256SUMS.txt` içindedir ve yayınlanan sürümler sonradan değiştirilemez. Windows'ta `Get-FileHash .\FarPen-win-x64.exe -Algorithm SHA256`, Linux'ta indirme klasöründe `sha256sum --ignore-missing -c SHA256SUMS.txt`. Değer eşleşmiyorsa dosyayı sil ve çalıştırma.
+
+### Güvenlik ve hukuki
+
+Güvenlik bildirimi: [SECURITY.md](SECURITY.md). FarPen, [Kullanım Koşulları](https://www.farpen.farbius.com/terms) ve [LICENSE](LICENSE) kapsamında ücretsiz kullanılır. Kişisel veriler: [Gizlilik Politikası](https://www.farpen.farbius.com/privacy) ve [KVKK Aydınlatma Metni](https://www.farpen.farbius.com/kvkk).
 
 © 2026 Farbius. Tüm hakları saklıdır.
